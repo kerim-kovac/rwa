@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DASHBOARD</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap');
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #0f0f0f;
+        color: #e0e0e0;
+        font-family: 'Inter', sans-serif;
+        display: flex;
+        min-height: 100vh;
+      }
+
+      /* SIDEBAR */
+      .sidebar {
+        width: 260px;
+        background-color: #1a1a1a;
+        border-right: 1px solid #2a2a2a;
+        display: flex;
+        flex-direction: column;
+        padding: 40px 0;
+        position: fixed;
+        height: 100vh;
+      }
+
+      .logo {
+        font-family: 'Playfair Display', serif;
+        font-size: 20px;
+        color: #ffffff;
+        padding: 0 30px;
+        margin-bottom: 50px;
+        letter-spacing: 1px;
+      }
+
+      .logo span {
+        color: #c8a96e;
+      }
+
+      .nav-label {
+        font-size: 11px;
+        color: #555;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        padding: 0 30px;
+        margin-bottom: 12px;
+      }
+
+      .nav-item {
+        width: 100%;
+        background: none;
+        border: none;
+        color: #888;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        padding: 12px 30px;
+        text-align: left;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .nav-item:hover {
+        background-color: #222;
+        color: #fff;
+      }
+
+      .nav-item.active {
+        background-color: #222;
+        color: #c8a96e;
+        border-right: 2px solid #c8a96e;
+      }
+
+      .nav-icon {
+        font-size: 16px;
+      }
+
+      .sidebar-bottom {
+        margin-top: auto;
+        border-top: 1px solid #2a2a2a;
+        padding-top: 20px;
+      }
+
+      .btn-logout {
+        width: 100%;
+        background: none;
+        border: none;
+        color: #888;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        padding: 12px 30px;
+        text-align: left;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        transition: all 0.2s;
+      }
+
+      .btn-logout:hover {
+        color: #e74c3c;
+      }
+
+      /* MAIN */
+      .main {
+        margin-left: 260px;
+        flex: 1;
+        padding: 60px;
+      }
+
+      .pozdrav {
+        margin-bottom: 50px;
+      }
+
+      .pozdrav h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 36px;
+        color: #ffffff;
+        margin-bottom: 8px;
+      }
+
+      .pozdrav p {
+        font-size: 15px;
+        color: #666;
+        font-weight: 300;
+      }
+
+      .kartice {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+      }
+
+      .kartica {
+        background-color: #1a1a1a;
+        border: 1px solid #2a2a2a;
+        border-radius: 12px;
+        padding: 30px;
+        transition: border-color 0.2s;
+      }
+
+      .kartica:hover {
+        border-color: #444;
+      }
+
+      .kartica-icon {
+        font-size: 28px;
+        margin-bottom: 16px;
+      }
+
+      .kartica h3 {
+        font-size: 15px;
+        color: #fff;
+        margin-bottom: 6px;
+      }
+
+      .kartica p {
+        font-size: 13px;
+        color: #666;
+        font-weight: 300;
+      }
+
+      .kartica button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="sidebar">
+      <div class="logo">TERRA<span>VISTA</span></div>
+
+      <p class="nav-label">Navigacija</p>
+
+      <form action="/dashboard" method="POST">
+        <input type="hidden" name="akcija" value="informacije">
+        <button class="nav-item" type="submit">
+          <span class="nav-icon">👤</span> Profil
+        </button>
+      </form>
+      <form action="/dashboard" method="POST">
+        <input type="hidden" name="akcija" value="promjenasifre">
+        <button class="nav-item" type="submit">
+          <span class="nav-icon">🔒</span> Password Change
+        </button>
+      </form>
+
+      <div class="sidebar-bottom">
+        <form action="/dashboard" method="POST">
+          <input type="hidden" name="akcija" value="logout">
+          <button class="btn-logout" type="submit">
+            <span class="nav-icon">🚪</span> Logout
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+      <div class="pozdrav">
+        <h1>Dobrodošao, <%= username %> 👋</h1>
+        <p>Lijepo je imati te nazad. Šta danas planiraš?</p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>REGISTRACIJA</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap');
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        font-family: 'Inter', sans-serif;
+      }
+
+      .lijeva {
+        flex: 1;
+        background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+          url('https://images.unsplash.com/photo-1503220317375-aaad61436b1b?w=1200') center/cover no-repeat;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 60px;
+      }
+
+      .lijeva h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 48px;
+        color: #ffffff;
+        line-height: 1.2;
+        margin-bottom: 16px;
+      }
+
+      .lijeva p {
+        font-size: 16px;
+        color: rgba(255,255,255,0.75);
+        font-weight: 300;
+        max-width: 380px;
+        line-height: 1.7;
+      }
+
+      .desna {
+        width: 480px;
+        background-color: #fafaf8;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 70px 60px;
+      }
+
+      .logo {
+        font-family: 'Playfair Display', serif;
+        font-size: 22px;
+        color: #1a1a1a;
+        margin-bottom: 60px;
+        letter-spacing: 1px;
+      }
+
+      .logo span {
+        color: #c8a96e;
+      }
+
+      h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 30px;
+        color: #1a1a1a;
+        margin-bottom: 8px;
+      }
+
+      .podnaslov {
+        font-size: 14px;
+        color: #999;
+        margin-bottom: 40px;
+        font-weight: 300;
+      }
+
+      label {
+        font-size: 12px;
+        color: #888;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      input {
+        width: 100%;
+        background-color: #fff;
+        border: 1px solid #e0e0e0;
+        color: #1a1a1a;
+        padding: 14px 16px;
+        border-radius: 8px;
+        font-size: 15px;
+        margin-bottom: 24px;
+        outline: none;
+        font-family: 'Inter', sans-serif;
+        transition: border-color 0.2s;
+      }
+
+      input:focus {
+        border-color: #c8a96e;
+      }
+
+      button {
+        width: 100%;
+        background-color: #1a1a1a;
+        color: #fff;
+        border: none;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 15px;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        cursor: pointer;
+        letter-spacing: 0.5px;
+        transition: background-color 0.2s;
+        margin-bottom: 20px;
+      }
+
+      button:hover {
+        background-color: #333;
+      }
+
+      .divider {
+        height: 1px;
+        background-color: #e8e8e8;
+        margin: 30px 0;
+      }
+
+      .login-link {
+        text-align: center;
+        font-size: 13px;
+        color: #999;
+      }
+
+      .login-link a {
+        color: #1a1a1a;
+        font-weight: 500;
+        text-decoration: none;
+      }
+
+      .login-link a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="lijeva">
+      <h2>Pridružite se<br>našoj porodici.</h2>
+      <p>Kreirajte nalog i otključajte ekskluzivne ponude za putovanja širom svijeta.</p>
+    </div>
+
+    <div class="desna">
+      <div class="logo">TERRA<span>VISTA</span></div>
+
+      <h1>Kreirajte nalog</h1>
+      <p class="podnaslov">Registracija je besplatna i traje manje od minute</p>
+
+      <form action="/register" method="POST">
+        <label>Korisničko ime</label>
+        <input type="text" name="ime" placeholder="Unesite vaše ime"/>
+
+        <label>E-mail adresa</label>
+        <input type="email" name="mail" placeholder="vas@email.com"/>
+
+        <label>Lozinka</label>
+        <input type="password" name="sifra" placeholder="••••••••"/>
+
+        <button type="submit">KREIRAJ NALOG</button>
+      </form>
+
+      <div class="divider"></div>
+
+      <div class="login-link">
+        Već imate nalog? <a href="/login">Prijavite se</a>
+      </div>
+    </div>
+
+  </body>
+</html>

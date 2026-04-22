@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>INFORMACIJE PROFILA</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap');
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #0f0f0f;
+        color: #e0e0e0;
+        font-family: 'Inter', sans-serif;
+        display: flex;
+        min-height: 100vh;
+      }
+
+      .sidebar {
+        width: 260px;
+        background-color: #1a1a1a;
+        border-right: 1px solid #2a2a2a;
+        display: flex;
+        flex-direction: column;
+        padding: 40px 0;
+        position: fixed;
+        height: 100vh;
+      }
+
+      .logo {
+        font-family: 'Playfair Display', serif;
+        font-size: 20px;
+        color: #ffffff;
+        padding: 0 30px;
+        margin-bottom: 50px;
+        letter-spacing: 1px;
+      }
+
+      .logo span {
+        color: #c8a96e;
+      }
+
+      .nav-label {
+        font-size: 11px;
+        color: #555;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        padding: 0 30px;
+        margin-bottom: 12px;
+      }
+
+      .nav-item {
+        width: 100%;
+        background: none;
+        border: none;
+        color: #888;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        padding: 12px 30px;
+        text-align: left;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .nav-item:hover {
+        background-color: #222;
+        color: #fff;
+      }
+
+      .nav-item.active {
+        background-color: #222;
+        color: #c8a96e;
+        border-right: 2px solid #c8a96e;
+      }
+
+      .sidebar-bottom {
+        margin-top: auto;
+        border-top: 1px solid #2a2a2a;
+        padding-top: 20px;
+      }
+
+      .btn-logout {
+        width: 100%;
+        background: none;
+        border: none;
+        color: #888;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        padding: 12px 30px;
+        text-align: left;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        transition: all 0.2s;
+      }
+
+      .btn-logout:hover {
+        color: #e74c3c;
+      }
+
+      .main {
+        margin-left: 260px;
+        flex: 1;
+        padding: 60px;
+      }
+
+      .header {
+        margin-bottom: 40px;
+      }
+
+      .header h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 32px;
+        color: #ffffff;
+        margin-bottom: 8px;
+      }
+
+      .header p {
+        font-size: 14px;
+        color: #666;
+        font-weight: 300;
+      }
+
+      .profil-kartica {
+        background-color: #1a1a1a;
+        border: 1px solid #2a2a2a;
+        border-radius: 16px;
+        padding: 40px;
+        max-width: 600px;
+      }
+
+      .info-row {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 28px;
+        padding-bottom: 28px;
+        border-bottom: 1px solid #2a2a2a;
+      }
+
+      .info-row:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .info-label {
+        font-size: 11px;
+        color: #555;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 8px;
+      }
+
+      .info-value {
+        font-size: 16px;
+        color: #ffffff;
+      }
+
+      .role-badge {
+        display: inline-block;
+        background-color: #c8a96e20;
+        color: #c8a96e;
+        border: 1px solid #c8a96e50;
+        padding: 4px 14px;
+        border-radius: 20px;
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="sidebar">
+      <div class="logo">TERRA<span>VISTA</span></div>
+
+      <p class="nav-label">Navigacija</p>
+
+      <form action="/dashboard" method="POST">
+        <input type="hidden" name="akcija" value="informacije">
+        <button class="nav-item active" type="submit">
+          <span>👤</span> Profil
+        </button>
+      </form>
+
+      <div class="sidebar-bottom">
+        <form action="/dashboard" method="POST">
+          <input type="hidden" name="akcija" value="logout">
+          <button class="btn-logout" type="submit">
+            <span>🚪</span> Logout
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="header">
+        <h1>Dobrodošao, <%= korisnik.ime %>!</h1>
+        <p>Pregled vaših osobnih podataka</p>
+      </div>
+
+      <div class="profil-kartica">
+        <div class="info-row">
+          <span class="info-label">Korisničko ime</span>
+          <span class="info-value"><%= korisnik.ime %></span>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">E-mail adresa</span>
+          <span class="info-value"><%= korisnik.email %></span>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">Rola</span>
+          <span class="info-value">
+            <span class="role-badge"><%= korisnik.role %></span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

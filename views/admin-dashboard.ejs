@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ADMIN PANEL</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #0f0f0f;
+        color: #e0e0e0;
+        font-family: 'Segoe UI', sans-serif;
+        padding: 40px;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 50px;
+        border-bottom: 1px solid #2a2a2a;
+        padding-bottom: 20px;
+      }
+
+      h1 {
+        font-size: 24px;
+        color: #ffffff;
+      }
+
+      .btn-logout {
+        background-color: transparent;
+        color: #888;
+        border: 1px solid #333;
+        padding: 8px 18px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 13px;
+      }
+
+      .btn-logout:hover {
+        background-color: #1a1a1a;
+        color: #fff;
+      }
+
+      h2 {
+        font-size: 16px;
+        color: #888;
+        margin-bottom: 25px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .kartice {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+      }
+
+      .kartica {
+        background-color: #1a1a1a;
+        border: 1px solid #2a2a2a;
+        border-radius: 10px;
+        padding: 30px 20px;
+        text-align: center;
+        cursor: pointer;
+        transition: border-color 0.2s;
+      }
+
+      .kartica:hover {
+        border-color: #555;
+      }
+
+      .kartica p {
+        font-size: 15px;
+        color: #ccc;
+      }
+
+      .kartica button {
+        background: none;
+        border: none;
+        color: inherit;
+        cursor: pointer;
+        font-size: 15px;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="header">
+      <h1> Dobrodošao, <%= ime %></h1>
+      <form action="/admin-dashboard" method="POST">
+        <input type="hidden" name="akcija" value="logout">
+        <button class="btn-logout" type="submit">LOGOUT</button>
+      </form>
+    </div>
+
+    <h2>Upravljanje</h2>
+
+    <div class="kartice">
+      <div class="kartica">
+        <form action="/admin-dashboard" method="POST">
+          <input type="hidden" name="akcija" value="useri">
+          <button type="submit">👥<br><br><p>Lista Usera</p></button>
+        </form>
+      </div>
+        <div class="kartica">
+        <form action="/admin-dashboard" method="POST">
+          <input type="hidden" name="akcija" value="blokiraj">
+          <button type="submit">⛔<br><br><p>Blokiraj usera</p></button>
+        </form>
+      </div>
+        <div class="kartica">
+      </div>
+    </div>
+
+  </body>
+</html>
