@@ -29,7 +29,7 @@ router.post('/', async function(req,res,next){
             console.log("GRESKA");
             return;
           }
-          res.end("USPJESAN REGISTER");
+          res.redirect('/login');
          });
           }
           

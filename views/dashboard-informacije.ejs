@@ -36,7 +36,6 @@
         color: #ffffff;
         padding: 0 30px;
         margin-bottom: 50px;
-        letter-spacing: 1px;
       }
 
       .logo span {
@@ -57,14 +56,11 @@
         background: none;
         border: none;
         color: #888;
-        font-family: 'Inter', sans-serif;
         font-size: 14px;
         padding: 12px 30px;
         text-align: left;
         cursor: pointer;
-        transition: all 0.2s;
         display: flex;
-        align-items: center;
         gap: 12px;
       }
 
@@ -79,26 +75,15 @@
         border-right: 2px solid #c8a96e;
       }
 
-      .sidebar-bottom {
-        margin-top: auto;
-        border-top: 1px solid #2a2a2a;
-        padding-top: 20px;
-      }
-
       .btn-logout {
         width: 100%;
         background: none;
         border: none;
         color: #888;
-        font-family: 'Inter', sans-serif;
         font-size: 14px;
         padding: 12px 30px;
         text-align: left;
         cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        transition: all 0.2s;
       }
 
       .btn-logout:hover {
@@ -118,14 +103,12 @@
       .header h1 {
         font-family: 'Playfair Display', serif;
         font-size: 32px;
-        color: #ffffff;
         margin-bottom: 8px;
       }
 
       .header p {
         font-size: 14px;
         color: #666;
-        font-weight: 300;
       }
 
       .profil-kartica {
@@ -137,17 +120,9 @@
       }
 
       .info-row {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 28px;
-        padding-bottom: 28px;
+        margin-bottom: 25px;
+        padding-bottom: 20px;
         border-bottom: 1px solid #2a2a2a;
-      }
-
-      .info-row:last-child {
-        border-bottom: none;
-        margin-bottom: 0;
-        padding-bottom: 0;
       }
 
       .info-label {
@@ -155,12 +130,12 @@
         color: #555;
         text-transform: uppercase;
         letter-spacing: 2px;
-        margin-bottom: 8px;
+        margin-bottom: 6px;
+        display: block;
       }
 
       .info-value {
         font-size: 16px;
-        color: #ffffff;
       }
 
       .role-badge {
@@ -172,6 +147,39 @@
         border-radius: 20px;
         font-size: 13px;
       }
+
+      /* UPLOAD SEKCIJA */
+      .upload-box {
+        margin-top: 30px;
+        padding-top: 20px;
+      }
+
+      .upload-box input[type="file"] {
+        background-color: #0f0f0f;
+        border: 1px solid #2a2a2a;
+        color: #fff;
+        padding: 10px;
+        border-radius: 6px;
+        width: 100%;
+        margin-bottom: 12px;
+        cursor: pointer;
+      }
+
+      .upload-box button {
+        background: linear-gradient(135deg, #c8a96e, #a8894f);
+        border: none;
+        color: black;
+        padding: 10px 18px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: 0.2s;
+      }
+
+      .upload-box button:hover {
+        opacity: 0.85;
+      }
+
     </style>
   </head>
   <body>
@@ -183,17 +191,13 @@
 
       <form action="/dashboard" method="POST">
         <input type="hidden" name="akcija" value="informacije">
-        <button class="nav-item active" type="submit">
-          <span>👤</span> Profil
-        </button>
+        <button class="nav-item active" type="submit">👤 Profil</button>
       </form>
 
-      <div class="sidebar-bottom">
+      <div style="margin-top:auto;">
         <form action="/dashboard" method="POST">
           <input type="hidden" name="akcija" value="logout">
-          <button class="btn-logout" type="submit">
-            <span>🚪</span> Logout
-          </button>
+          <button class="btn-logout" type="submit">🚪 Logout</button>
         </form>
       </div>
     </div>
@@ -201,26 +205,34 @@
     <div class="main">
       <div class="header">
         <h1>Dobrodošao, <%= korisnik.ime %>!</h1>
-        <p>Pregled vaših osobnih podataka</p>
+        <p>Pregled vaših podataka</p>
       </div>
 
       <div class="profil-kartica">
+
         <div class="info-row">
           <span class="info-label">Korisničko ime</span>
           <span class="info-value"><%= korisnik.ime %></span>
         </div>
 
         <div class="info-row">
-          <span class="info-label">E-mail adresa</span>
+          <span class="info-label">E-mail</span>
           <span class="info-value"><%= korisnik.email %></span>
         </div>
 
         <div class="info-row">
           <span class="info-label">Rola</span>
-          <span class="info-value">
-            <span class="role-badge"><%= korisnik.role %></span>
-          </span>
+          <span class="role-badge"><%= korisnik.role %></span>
         </div>
+
+        <!-- UPLOAD -->
+        <div class="upload-box">
+          <form action="/dashboard/informacije" method="POST" enctype="multipart/form-data">
+            <input type="file" name="photo">
+            <button type="submit">Upload slike</button>
+          </form>
+        </div>
+
       </div>
     </div>
 

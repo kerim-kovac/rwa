@@ -24,6 +24,7 @@ router.post('/', async function(req,res,next){
           req.session.ulogovan = true;
           req.session.korisnik = data.ime;
           req.session.email = data.email;
+          req.session.idKorisnika = data.id;
           res.redirect('/dashboard');
 
         }else{

@@ -19,7 +19,6 @@
         min-height: 100vh;
       }
 
-      /* SIDEBAR */
       .sidebar {
         width: 260px;
         background-color: #1a1a1a;
@@ -110,14 +109,16 @@
         color: #e74c3c;
       }
 
-      /* MAIN */
       .main {
         margin-left: 260px;
         flex: 1;
         padding: 60px;
       }
 
-      .pozdrav {
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         margin-bottom: 50px;
       }
 
@@ -134,47 +135,132 @@
         font-weight: 300;
       }
 
-      .kartice {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-        gap: 20px;
+      .profile-box a img {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #c8a96e;
+        display: block;
       }
 
-      .kartica {
+      .chat-wrap {
+        max-width: 800px;
+      }
+
+      .chat-input {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 30px;
+      }
+
+      .chat-input input {
+        flex: 1;
         background-color: #1a1a1a;
         border: 1px solid #2a2a2a;
-        border-radius: 12px;
-        padding: 30px;
+        color: #fff;
+        padding: 14px 18px;
+        border-radius: 8px;
+        font-size: 15px;
+        font-family: 'Inter', sans-serif;
+        outline: none;
         transition: border-color 0.2s;
       }
 
-      .kartica:hover {
-        border-color: #444;
+      .chat-input input:focus {
+        border-color: #c8a96e;
       }
 
-      .kartica-icon {
-        font-size: 28px;
-        margin-bottom: 16px;
+      .chat-input button {
+        background-color: #c8a96e;
+        color: #0f0f0f;
+        border: none;
+        padding: 14px 24px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s;
       }
 
-      .kartica h3 {
+      .chat-input button:hover {
+        background-color: #b8935a;
+      }
+
+      .chat-poruke {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .poruka {
+        background-color: #1a1a1a;
+        border: 1px solid #2a2a2a;
+        border-radius: 10px;
+        padding: 16px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        transition: border-color 0.2s;
+      }
+
+      .poruka:hover {
+        border-color: #333;
+      }
+
+      .poruka-ime {
+        font-size: 13px;
+        color: #c8a96e;
+        font-weight: 500;
+      }
+
+      .poruka-tekst {
         font-size: 15px;
-        color: #fff;
-        margin-bottom: 6px;
+        color: #e0e0e0;
       }
 
-      .kartica p {
+      .poruka-akcije {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .poruka-akcije button {
+        background: none;
+        border: 1px solid #2a2a2a;
+        color: #888;
+        padding: 5px 12px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-family: 'Inter', sans-serif;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .poruka-akcije button:hover {
+        border-color: #c8a96e;
+        color: #c8a96e;
+      }
+
+      .btn-obrisi {
+        border-color: #c0392b !important;
+        color: #c0392b !important;
+      }
+
+      .btn-obrisi:hover {
+        background-color: #c0392b !important;
+        color: #fff !important;
+      }
+
+      .likes-count {
         font-size: 13px;
         color: #666;
-        font-weight: 300;
       }
 
-      .kartica button {
-        background: none;
-        border: none;
-        cursor: pointer;
-        text-align: left;
-        width: 100%;
+      .poruka-datum {
+        font-size: 11px;
+        color: #444;
       }
     </style>
   </head>
@@ -197,6 +283,18 @@
           <span class="nav-icon">🔒</span> Password Change
         </button>
       </form>
+      <form action="/dashboard" method="POST">
+        <input type="hidden" name="akcija" value="promjenausera">
+        <button class="nav-item" type="submit">
+          <span class="nav-icon">✏️</span> Username Change
+        </button>
+      </form>
+      <form action="/dashboard" method="POST">
+        <input type="hidden" name="akcija" value="promjenamaila">
+        <button class="nav-item" type="submit">
+          <span class="nav-icon">📧</span> Email Change
+        </button>
+      </form>
 
       <div class="sidebar-bottom">
         <form action="/dashboard" method="POST">
@@ -208,12 +306,55 @@
       </div>
     </div>
 
-    <!-- MAIN -->
     <div class="main">
-      <div class="pozdrav">
-        <h1>Dobrodošao, <%= username %> 👋</h1>
-        <p>Lijepo je imati te nazad. Šta danas planiraš?</p>
+      <div class="topbar">
+        <div class="pozdrav">
+          <h1>Dobrodošao, <%= korisnik.ime %> 👋</h1>
+          <p>Lijepo je imati te nazad. Šta danas planiraš?</p>
+        </div>
+        <div class="profile-box">
+          <% if(korisnik.slika){ %>
+            <a href="/dashboard/informacije"><img src="/images/<%= korisnik.slika %>" alt="profilna slika"></a>
+          <% } else { %>
+            <a href="/dashboard/informacije"><img src="/images/default.jpg" alt="nema"></a>
+          <% } %>
+        </div>
+      </div>
+
+      <div class="chat-wrap">
+        <div class="chat-input">
+          <form action="/dashboard/chat" method="POST">
+            <input type="text" name="poruka" placeholder="Napiši poruku..."/>
+            <button type="submit">POŠALJI</button>
+          </form>
+        </div>
+
+        <div class="chat-poruke">
+          <% poruke.forEach(poruka => { %>
+            <div class="poruka">
+              <span class="poruka-ime"><%= poruka.ime %></span>
+              <span class="poruka-tekst"><%= poruka.poruka %></span>
+              <div class="poruka-akcije">
+                <span class="likes-count">❤️ <%= poruka.likes %></span>
+                <% if(korisnik.id != poruka.korisnik_id){ %>
+                  <form action="/dashboard/like" method="POST">
+                    <input type="hidden" name="id" value="<%= poruka.id %>">
+                    <button type="submit">Lajkaj</button>
+                  </form>
+                <% } %>
+                <% if(poruka.korisnik_id == korisnik.id){ %>
+                  <form action="/dashboard/obrisi-chat" method="POST">
+                    <input type="hidden" name="id" value="<%= poruka.id %>">
+                    <button type="submit" class="btn-obrisi">Obriši</button>
+                  </form>
+                <% } %>
+              </div>
+              <span class="poruka-datum"><%= poruka.datum %></span>
+            </div>
+          <% }) %>
+        </div>
       </div>
     </div>
+
   </body>
 </html>

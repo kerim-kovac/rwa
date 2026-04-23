@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PROMJENA LOZINKE</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap');
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #0f0f0f;
+        color: #e0e0e0;
+        font-family: 'Inter', sans-serif;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .kartica {
+        background-color: #1a1a1a;
+        border: 1px solid #2a2a2a;
+        border-radius: 16px;
+        padding: 50px;
+        width: 460px;
+      }
+
+      .logo {
+        font-family: 'Playfair Display', serif;
+        font-size: 20px;
+        color: #ffffff;
+        margin-bottom: 40px;
+        letter-spacing: 1px;
+      }
+
+      .logo span {
+        color: #c8a96e;
+      }
+
+      h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 26px;
+        color: #ffffff;
+        margin-bottom: 8px;
+      }
+
+      .podnaslov {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 35px;
+        font-weight: 300;
+      }
+
+      label {
+        font-size: 11px;
+        color: #555;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      input {
+        width: 100%;
+        background-color: #0f0f0f;
+        border: 1px solid #2a2a2a;
+        color: #fff;
+        padding: 14px 16px;
+        border-radius: 8px;
+        font-size: 15px;
+        margin-bottom: 24px;
+        outline: none;
+        font-family: 'Inter', sans-serif;
+        transition: border-color 0.2s;
+      }
+
+      input:focus {
+        border-color: #c8a96e;
+      }
+
+      button[type="submit"] {
+        width: 100%;
+        background-color: #fff;
+        color: #0f0f0f;
+        border: none;
+        padding: 14px;
+        border-radius: 8px;
+        font-size: 15px;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        margin-bottom: 16px;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #ddd;
+      }
+
+      .nazad {
+        text-align: center;
+        font-size: 13px;
+        color: #666;
+      }
+
+      .nazad a {
+        color: #c8a96e;
+        text-decoration: none;
+      }
+
+      .nazad a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="kartica">
+      <div class="logo">TERRA<span>VISTA</span></div>
+
+      <h1>Promjena E-Maila</h1>
+      <form action="/dashboard/email-change" method="POST">
+
+        <label>Unesite kod koji je dosao na: <%= email %></label>
+        <input type="text" name="kod" />
+
+        <button type="submit">POSALJI</button>
+      </form>
+
+      <div class="nazad">
+        <a href="/dashboard">← Nazad na dashboard</a>
+      </div>
+    </div>
+  </body>
+</html>
